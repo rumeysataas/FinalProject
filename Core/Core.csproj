@@ -157,6 +157,7 @@
   <ItemGroup>
     <Compile Include="DataAccsess\EntityFramework\EfEntityRepositoryBase.cs" />
     <Compile Include="DataAccsess\IEntityRepository.cs" />
+    <Compile Include="Entities\IDto.cs" />
     <Compile Include="Entities\IEntity.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

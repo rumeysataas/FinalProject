@@ -10,7 +10,17 @@ namespace ConsoleUI
     {
         static void Main(string[] args)
         {
-           // ProductMethod();
+            // ProductMethod();
+            // CategoryMethod();
+            ProductManager product = new ProductManager(new EfProductDal());
+            foreach (var item in product.GetProductDetails())
+            {
+                Console.WriteLine(item.ProductName+" : "+item.CategoryName);
+            }
+        }
+
+        private static void CategoryMethod()
+        {
             CategoryManager categoryManager = new CategoryManager(new EfCategoryDal());
             foreach (var category in categoryManager.GetAll())
             {
