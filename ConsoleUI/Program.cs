@@ -12,11 +12,25 @@ namespace ConsoleUI
         {
             // ProductMethod();
             // CategoryMethod();
+           ProductJoinMethod();
+        }
+
+        private static void ProductJoinMethod()
+        {
             ProductManager product = new ProductManager(new EfProductDal());
-            foreach (var item in product.GetProductDetails())
+            var result = product.GetProductDetails();
+            if (result.Success == true)
             {
-                Console.WriteLine(item.ProductName+" : "+item.CategoryName);
+                foreach (var item in result.Data)
+                {
+                    Console.WriteLine(item.ProductName + " : " + item.CategoryName);
+                }
             }
+            else
+            {
+                Console.WriteLine(result.Message);
+            }
+            
         }
 
         private static void CategoryMethod()
@@ -32,21 +46,21 @@ namespace ConsoleUI
         {
             ProductManager productManager = new ProductManager(new EfProductDal());
             Console.WriteLine("************************Tüm ürün isimleri listelendi.*************************");
-            foreach (var product in productManager.GetAll())
+            foreach (var product in productManager.GetAll().Data)
             {
 
                 Console.WriteLine(product.ProductName);
 
             }
             Console.WriteLine("*********************Category Id ye göre listelendi.********************");
-            foreach (var product in productManager.GetAllByCategoryId(5))
+            foreach (var product in productManager.GetAllByCategoryId(5).Data)
             {
 
                 Console.WriteLine(product.ProductName);
 
             }
             Console.WriteLine("********************Fiyat aralığına göre listelendi.*******************");
-            foreach (var product in productManager.GetByUnitPrice(3, 6))
+            foreach (var product in productManager.GetByUnitPrice(3, 6).Data)
             {
 
                 Console.WriteLine(product.ProductName);
